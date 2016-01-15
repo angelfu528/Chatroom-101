@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title> Chatroom 101 </title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="./public/css/bootstrap.min.css">
+		<script src='./public/js/jquery-2.1.4.min.js'></script>
+    	<script type="text/javascript" src='./public/js/bootstrap.min.js'></script>
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+	</head>
+	
+	<body>
+	    <nav class="navbar navbar-default col-md-10 col-md-offset-1 column">
+	        <div class="container-fluid">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <a class="navbar-brand" href="#">Home</a>
+	            </div>
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+	                <ul class="nav navbar-nav">
+	                    <li class="active"><a href="#">Chatroom<span class="sr-only">(current)</span></a></li> <!-- Change to active only -->
+	                    <li><a href="#">Announcement</a></li>
+	                    <li><a href="#">Missing Person</a></li>
+	                    <!-- <li><a href="#">Search</a></li> -->
+	                </ul>
+	                <form class="navbar-form navbar-left" role="search" id="search">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" placeholder="Search">
+	                    </div>
+	                    <button type="submit" class="btn btn-default">Submit</button>
+	                </form>
+
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="#">Profile</a></li>
+	                            <li><a href="#">Log out</a></li>
+	                        </ul>
+	                    </li>
+	                </ul>
+
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </div>
+	        <!-- /.container-fluid -->
+	    </nav>
+
+	    <div class="jumbotron col-md-10 col-md-offset-1 column">
+		  <h1>Welcome!</h1> <!-- add <%= user %> later -->
+		  <p> This is a chatroom for the contestants in the 86th Hunger Games to communicate with each other during the game. </p>
+		  <p> Good luck! </p>
+		 <!--  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+		</div>
+
+		<div class = "container">
+			<img src="./public/images/The-Hunger-Games.png" class = "center-block" width="200px" height="200px">
+		</div>
+	
+	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+/*      var username = prompt("Please enter your name");*/
+      var socket = io.connect('http://localhost:3000');
+
+
+      socket.on('chat message', function (username, msg, timestamp) {
+        $('#messages').append('<b>'+ username + ' </b> ' + new Date(timestamp).toString() + '</br>' );
+        $('#messages').append($('<li>').text(msg));
+      });
+      socket.on('connect', function() {
+        socket.emit('adduser', username);
+      });
+
+      socket.on('private message', function (from, msg) {
+        console.log('I received a private message by ', from, ' saying ', msg);
+      });
+  
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+    </script>
+</body>
+</html>

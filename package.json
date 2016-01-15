@@ -1,0 +1,15 @@
+{
+  "name": "web-chat",
+  "version": "0.0.1",
+  "description": "Real time web chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Angel Fu <angelfaq528@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
