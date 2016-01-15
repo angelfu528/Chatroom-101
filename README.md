@@ -11,18 +11,18 @@ last summer. I am currently working on this project to add more features to the 
 
 ### Current Features 
 
-#### When the user first enters the chatroom, a pop-up window will ask the user for the username  
+When the user first enters the chatroom, a pop-up window will ask the user for the username  
 ![alt text][img]
 [img]:https://raw.githubusercontent.com/angelfu528/Chatroom-101/master/public/images/enterName.png
 
-#### When the user sends a message, everyone in the chatroom will receive it (Public Chat)
+When the user sends a message, everyone in the chatroom will receive it (Public Chat)
 ![alt text][img1]
 [img1]:https://raw.githubusercontent.com/angelfu528/Chatroom-101/master/public/images/message.png
 
-#### More than one user can enter the chatroom and chat with other people at the same time 
+More than one user can enter the chatroom and chat with other people at the same time 
 ![alt text][img2]
 [img2]:https://github.com/angelfu528/Chatroom-101/blob/master/public/images/twoUsers.png
 
-#### The chatroom will send out a message everytime someone leaves or enters the room 
+The chatroom will send out a message everytime someone leaves or enters the room 
 ![alt text][img3]
 [img3]:https://raw.githubusercontent.com/angelfu528/Chatroom-101/master/public/images/leaveChatroom.png
